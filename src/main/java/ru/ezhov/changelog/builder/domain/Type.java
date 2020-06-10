@@ -1,4 +1,4 @@
-package ru.ezhov.changelog.builder.domain.type;
+package ru.ezhov.changelog.builder.domain;
 
 import java.util.Objects;
 

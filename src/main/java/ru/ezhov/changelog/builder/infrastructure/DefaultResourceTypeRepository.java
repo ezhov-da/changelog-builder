@@ -1,14 +1,14 @@
 package ru.ezhov.changelog.builder.infrastructure;
 
-import ru.ezhov.changelog.builder.domain.type.Type;
-import ru.ezhov.changelog.builder.domain.type.TypeRepository;
-import ru.ezhov.changelog.builder.domain.type.TypeRepositoryException;
+import ru.ezhov.changelog.builder.domain.Type;
+import ru.ezhov.changelog.builder.domain.TypeRepository;
+import ru.ezhov.changelog.builder.domain.TypeRepositoryException;
 
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class DefaultResourceTypeRepository implements TypeRepository {
+class DefaultResourceTypeRepository implements TypeRepository {
     private static final String DEFAULT_TYPE_FILE = "/default-types.txt";
 
     public Set<Type> all() throws TypeRepositoryException {

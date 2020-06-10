@@ -1,4 +1,4 @@
-package ru.ezhov.changelog.builder.domain.log;
+package ru.ezhov.changelog.builder.domain;
 
 import java.util.Optional;
 
@@ -9,8 +9,12 @@ public class Scope {
         this.value = value;
     }
 
-    public Scope create(String value) {
+    public static Scope create(String value) {
         return new Scope(value);
+    }
+
+    public static Scope empty() {
+        return new Scope(null);
     }
 
     public Optional<String> value() {
