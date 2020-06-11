@@ -1,18 +1,15 @@
 package ru.ezhov.changelog.builder.infrastructure;
 
 import org.junit.jupiter.api.Test;
-import ru.ezhov.changelog.builder.domain.Type;
+import ru.ezhov.changelog.builder.domain.Log;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 class GitLogRepositoryTest {
     @Test
     public void shouldReadLog() throws Exception {
-        Set<Type> types = new HashSet<>();
-        types.add(Type.create("feat"));
-
         GitLogRepository gitLogRepository = new GitLogRepository();
-        gitLogRepository.all(types);
+        final List<Log> all = gitLogRepository.all();
+        all.forEach(log -> System.out.println(log.description().value()));
     }
 }

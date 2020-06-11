@@ -36,4 +36,8 @@ public class LogMustache {
     public String getCommitDate() {
         return commitDate;
     }
+
+    public boolean hasScope() {
+        return scope != null && !"".equals(scope);
+    }
 }

@@ -5,23 +5,21 @@ import org.slf4j.LoggerFactory;
 import ru.ezhov.changelog.builder.domain.Log;
 import ru.ezhov.changelog.builder.domain.LogRepository;
 import ru.ezhov.changelog.builder.domain.LogRepositoryException;
-import ru.ezhov.changelog.builder.domain.Type;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-import java.util.Set;
 
 public class GitLogRepository implements LogRepository {
     private static final Logger LOG = LoggerFactory.getLogger(GitLogRepository.class);
 
     @Override
-    public List<Log> all(Set<Type> types) throws LogRepositoryException {
+    public List<Log> all() throws LogRepositoryException {
         List<Log> logRows = new ArrayList<>();
 
         try {
-            final Process process = Runtime.getRuntime().exec("git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\" --date=iso-strict");
+            final Process process = Runtime.getRuntime().exec("git log --pretty=format:%h%x09%an%x09%ad%x09%s --date=iso-strict");
             try (Scanner scanner = new Scanner(process.getInputStream(), "UTF-8")) {
                 while (scanner.hasNextLine()) {
                     String logLine = scanner.nextLine();

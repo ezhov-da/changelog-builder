@@ -31,9 +31,8 @@ public class MustacheChangelogViewer implements ChangelogViewer {
                                         .collect(Collectors.toList())
                         )
                 )
+                .sorted((o1, o2) -> o2.getCommitDate().compareTo(o1.getCommitDate()))
                 .collect(Collectors.toList());
-
-
         try {
             MustacheFactory mf = new DefaultMustacheFactory();
             StringReader stringReader = new StringReader(template);
