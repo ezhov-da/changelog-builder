@@ -1,6 +1,7 @@
 package ru.ezhov.changelog.builder;
 
 import ru.ezhov.changelog.builder.application.ChangelogApplicationService;
+import ru.ezhov.changelog.builder.application.ChangelogApplicationServiceException;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +17,8 @@ public class Application {
                 ChangelogApplicationService changelogApplicationService = new ChangelogApplicationService();
                 changelogApplicationService.create(template.get());
             }
-        } catch (IOException e) {
-            System.out.println("Ошибка");
+        } catch (IOException | ChangelogApplicationServiceException e) {
+            System.out.println("Error");
             e.printStackTrace();
         }
     }

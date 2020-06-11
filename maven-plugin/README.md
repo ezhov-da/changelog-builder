@@ -1,0 +1,1 @@
+mvn ru.ezhov:changelog-builder-maven-plugin:0.1:generate
