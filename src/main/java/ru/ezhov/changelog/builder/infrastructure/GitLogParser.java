@@ -26,7 +26,7 @@ public class GitLogParser {
         return parseCommitText(username, dateCommit, commitText);
     }
 
-    private Optional<Log> parseCommitText(String username, LocalDateTime commmitDate, String commitText) {
+    private Optional<Log> parseCommitText(String username, LocalDateTime commitDate, String commitText) {
         Log log = null;
 
         final int indexOf = commitText.indexOf(':');
@@ -52,7 +52,7 @@ public class GitLogParser {
                     Scope.create(scope),
                     Description.create(textMessage),
                     CommitUsername.create(username),
-                    CommitDateTime.create(commmitDate)
+                    CommitDateTime.create(commitDate)
             );
         }
 
