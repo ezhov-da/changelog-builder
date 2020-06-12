@@ -2,14 +2,14 @@ package ru.ezhov.changelog.builder.domain;
 
 import java.time.LocalDate;
 
-public class Log {
+public class Commit {
     private final Type type;
     private final Scope scope;
     private final Description description;
     private final CommitUsername commitUsername;
     private final CommitDateTime commitDateTime;
 
-    private Log(Type type, Scope scope, Description description, CommitUsername commitUsername, CommitDateTime commitDateTime) {
+    private Commit(Type type, Scope scope, Description description, CommitUsername commitUsername, CommitDateTime commitDateTime) {
         this.type = type;
         this.scope = scope;
         this.description = description;
@@ -17,8 +17,8 @@ public class Log {
         this.commitDateTime = commitDateTime;
     }
 
-    public static Log create(Type type, Scope scope, Description description, CommitUsername commitUsername, CommitDateTime commitDateTime) {
-        return new Log(type, scope, description, commitUsername, commitDateTime);
+    public static Commit create(Type type, Scope scope, Description description, CommitUsername commitUsername, CommitDateTime commitDateTime) {
+        return new Commit(type, scope, description, commitUsername, commitDateTime);
     }
 
     public Type type() {

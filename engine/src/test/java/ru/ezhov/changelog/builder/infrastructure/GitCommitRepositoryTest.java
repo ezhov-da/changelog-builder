@@ -1,15 +1,15 @@
 package ru.ezhov.changelog.builder.infrastructure;
 
 import org.junit.jupiter.api.Test;
-import ru.ezhov.changelog.builder.domain.Log;
+import ru.ezhov.changelog.builder.domain.Commit;
 
 import java.util.List;
 
-class GitLogRepositoryTest {
+class GitCommitRepositoryTest {
     @Test
     public void shouldReadLog() throws Exception {
-        GitLogRepository gitLogRepository = new GitLogRepository();
-        final List<Log> all = gitLogRepository.all();
+        GitCommitRepository gitLogRepository = new GitCommitRepository();
+        final List<Commit> all = gitLogRepository.all();
         all.forEach(log -> System.out.println(log.description().value()));
     }
 }

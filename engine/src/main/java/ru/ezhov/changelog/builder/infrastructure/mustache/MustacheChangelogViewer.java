@@ -5,7 +5,10 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import ru.ezhov.changelog.builder.domain.ChangelogViewer;
 import ru.ezhov.changelog.builder.domain.ChangelogViewerException;
-import ru.ezhov.changelog.builder.domain.Log;
+import ru.ezhov.changelog.builder.domain.Commit;
+import ru.ezhov.changelog.builder.domain.CommitDateFormat;
+import ru.ezhov.changelog.builder.domain.CommitDateTimeFormat;
+import ru.ezhov.changelog.builder.domain.Template;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -16,8 +19,13 @@ import java.util.stream.Collectors;
 
 public class MustacheChangelogViewer implements ChangelogViewer {
     @Override
-    public String create(String template, List<Log> logs) throws ChangelogViewerException {
-        final Map<LocalDate, List<Log>> collect = logs.stream().collect(Collectors.groupingBy(Log::commitDate));
+    public String create(
+            Template template,
+            CommitDateFormat commitDateFormat,
+            CommitDateTimeFormat commitDateTimeFormat,
+            List<Commit> commits
+    ) throws ChangelogViewerException {
+        final Map<LocalDate, List<Commit>> collect = commits.stream().collect(Collectors.groupingBy(Commit::commitDate));
 
         final List<CommitDayMustache> commitDayMustaches = collect
                 .entrySet()
@@ -25,9 +33,11 @@ public class MustacheChangelogViewer implements ChangelogViewer {
                 .map(
                         e -> new CommitDayMustache(
                                 e.getKey(),
+                                commitDateFormat,
                                 e.getValue()
                                         .stream()
-                                        .map(LogMustache::new)
+                                        .sorted((o1, o2) -> o2.commitDateTime().value().compareTo(o1.commitDateTime().value()))
+                                        .map(commit -> new CommitMustache(commit, commitDateTimeFormat))
                                         .collect(Collectors.toList())
                         )
                 )
@@ -35,10 +45,10 @@ public class MustacheChangelogViewer implements ChangelogViewer {
                 .collect(Collectors.toList());
         try {
             MustacheFactory mf = new DefaultMustacheFactory();
-            StringReader stringReader = new StringReader(template);
+            StringReader stringReader = new StringReader(template.value());
             Mustache mustache = mf.compile(stringReader, null);
             StringWriter stringWriter = new StringWriter();
-            mustache.execute(stringWriter, new LogsMustache(commitDayMustaches)).flush();
+            mustache.execute(stringWriter, new CommitsMustache(commitDayMustaches)).flush();
             return stringWriter.toString();
         } catch (Exception e) {
             throw new ChangelogViewerException("Error template build", e);

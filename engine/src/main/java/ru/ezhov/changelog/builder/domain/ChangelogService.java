@@ -3,26 +3,26 @@ package ru.ezhov.changelog.builder.domain;
 import java.util.List;
 
 public class ChangelogService {
-    private final LogRepository logRepository;
+    private final CommitRepository commitRepository;
     private final ChangelogViewer changelogViewer;
-    private final ChangelogStore changelogStore;
+    private final ChangelogRepository changelogRepository;
 
-    public ChangelogService(LogRepository logRepository, ChangelogViewer changelogViewer, ChangelogStore changelogStore) {
-        this.logRepository = logRepository;
+    public ChangelogService(CommitRepository commitRepository, ChangelogViewer changelogViewer, ChangelogRepository changelogRepository) {
+        this.commitRepository = commitRepository;
         this.changelogViewer = changelogViewer;
-        this.changelogStore = changelogStore;
+        this.changelogRepository = changelogRepository;
     }
 
-    public void create(String template) throws ChangelogServiceException {
+    public void create(Template template, CommitDateFormat commitDateFormat, CommitDateTimeFormat commitDateTimeFormat) throws ChangelogServiceException {
         try {
-            final List<Log> logs = logRepository.all();
-            final String changelog = changelogViewer.create(template, logs);
-            changelogStore.save(changelog);
-        } catch (LogRepositoryException e) {
-            throw new ChangelogServiceException("Error log retrieve", e);
+            final List<Commit> commits = commitRepository.all();
+            final String changelog = changelogViewer.create(template, commitDateFormat, commitDateTimeFormat, commits);
+            changelogRepository.save(changelog);
+        } catch (CommitRepositoryException e) {
+            throw new ChangelogServiceException("Error commits retrieve", e);
         } catch (ChangelogViewerException e) {
             throw new ChangelogServiceException("Error template", e);
-        } catch (ChangelogStoreException e) {
+        } catch (ChangelogRepositoryException e) {
             throw new ChangelogServiceException("Error on save file", e);
         }
     }

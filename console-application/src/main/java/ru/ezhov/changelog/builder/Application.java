@@ -2,6 +2,12 @@ package ru.ezhov.changelog.builder;
 
 import ru.ezhov.changelog.builder.application.ChangelogApplicationService;
 import ru.ezhov.changelog.builder.application.ChangelogApplicationServiceException;
+import ru.ezhov.changelog.builder.domain.Template;
+import ru.ezhov.changelog.builder.infrastructure.ChangelogRepositoryFactory;
+import ru.ezhov.changelog.builder.infrastructure.ChangelogViewerFactory;
+import ru.ezhov.changelog.builder.infrastructure.CommitRepositoryFactory;
+import ru.ezhov.changelog.builder.infrastructure.CommitRepositoryFactoryException;
+import ru.ezhov.changelog.builder.infrastructure.ConfigurationFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +20,21 @@ public class Application {
         try {
             final Optional<String> template = getTemplate(args);
             if (template.isPresent()) {
-                ChangelogApplicationService changelogApplicationService = new ChangelogApplicationService();
-                changelogApplicationService.create(template.get());
+                ChangelogApplicationService changelogApplicationService = new ChangelogApplicationService(
+                        CommitRepositoryFactory.getInstance(ConfigurationFactory.defaultConfiguration().vcs()),
+                        ChangelogViewerFactory.mustache(),
+                        ChangelogRepositoryFactory.fileChangelogRepository(
+                                ConfigurationFactory.defaultConfiguration().changelogFileDirectory(),
+                                ConfigurationFactory.defaultConfiguration().changelogFilename()
+                        )
+                );
+                changelogApplicationService.create(
+                        Template.create(template.get()),
+                        ConfigurationFactory.defaultConfiguration().commitDateFormat(),
+                        ConfigurationFactory.defaultConfiguration().commitDateTimeFormat()
+                );
             }
-        } catch (IOException | ChangelogApplicationServiceException e) {
+        } catch (IOException | ChangelogApplicationServiceException | CommitRepositoryFactoryException e) {
             System.out.println("Error");
             e.printStackTrace();
         }

@@ -1,9 +1,9 @@
 package ru.ezhov.changelog.builder.infrastructure;
 
+import ru.ezhov.changelog.builder.domain.Commit;
 import ru.ezhov.changelog.builder.domain.CommitDateTime;
 import ru.ezhov.changelog.builder.domain.CommitUsername;
 import ru.ezhov.changelog.builder.domain.Description;
-import ru.ezhov.changelog.builder.domain.Log;
 import ru.ezhov.changelog.builder.domain.Scope;
 import ru.ezhov.changelog.builder.domain.Type;
 
@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-public class GitLogParser {
+class GitCommitParser {
     private final String line;
 
-    public GitLogParser(String line) {
+    public GitCommitParser(String line) {
         this.line = line;
     }
 
-    public Optional<Log> parse() {
+    public Optional<Commit> parse() {
         String[] parts = line.split("\\t");
         String username = parts[1];
         LocalDateTime dateCommit = LocalDateTime.parse(parts[2], DateTimeFormatter.ISO_DATE_TIME);
@@ -26,8 +26,8 @@ public class GitLogParser {
         return parseCommitText(username, dateCommit, commitText);
     }
 
-    private Optional<Log> parseCommitText(String username, LocalDateTime commitDate, String commitText) {
-        Log log = null;
+    private Optional<Commit> parseCommitText(String username, LocalDateTime commitDate, String commitText) {
+        Commit commit = null;
 
         final int indexOf = commitText.indexOf(':');
         if (indexOf != -1) {
@@ -47,7 +47,7 @@ public class GitLogParser {
                 type = typeAndScope;
             }
 
-            log = Log.create(
+            commit = Commit.create(
                     Type.create(type),
                     Scope.create(scope),
                     Description.create(textMessage),
@@ -56,6 +56,6 @@ public class GitLogParser {
             );
         }
 
-        return Optional.ofNullable(log);
+        return Optional.ofNullable(commit);
     }
 }

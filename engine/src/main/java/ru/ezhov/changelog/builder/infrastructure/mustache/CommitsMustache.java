@@ -2,10 +2,10 @@ package ru.ezhov.changelog.builder.infrastructure.mustache;
 
 import java.util.List;
 
-public class LogsMustache {
+public class CommitsMustache {
     private List<CommitDayMustache> commitDays;
 
-    public LogsMustache(List<CommitDayMustache> commitDays) {
+    public CommitsMustache(List<CommitDayMustache> commitDays) {
         this.commitDays = commitDays;
     }
 
