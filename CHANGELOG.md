@@ -1,5 +1,7 @@
 # Changelog
     ## 2020-06-13
+        - typo fixed *docs*
+        - CHANGELOG.md file edited *docs*
         - added configuration supports to maven plugin *feat*
     ## 2020-06-12
         - updated CHANGELOG.md *docs*
