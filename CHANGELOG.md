@@ -1,5 +1,7 @@
 # Changelog
 ## 2020-06-12
+- changed language from &#39;ru&#39; to &#39;en&#39; __chore__
+- removed old sources __refactor__
 - edited CHANGELOG.md __docs__
 - changed architecture implemented Maven plugin __feat__
 ## 2020-06-11
