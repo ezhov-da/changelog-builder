@@ -138,3 +138,11 @@ mvn ru.ezhov:changelog-builder-maven-plugin:0.1:generate -X
 ```shell script
 mvn clean package install
 ```
+
+### Deploy
+
+[Instruction](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages)
+ 
+```shell script
+mvn deploy
+```

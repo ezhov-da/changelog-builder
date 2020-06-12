@@ -21,6 +21,7 @@
 
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -30,4 +31,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ezhov-da/changelog-builder</url>
+        </repository>
+    </distributionManagement>
 </project>

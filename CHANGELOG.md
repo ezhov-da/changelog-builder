@@ -1,5 +1,6 @@
 # Changelog
 ## 2020-06-13
+- artifacts deploy added  to git packages *build*
 - README.md edited *docs*
 - tabs deleted in the default template *fix*
 - typo fixed *docs*
