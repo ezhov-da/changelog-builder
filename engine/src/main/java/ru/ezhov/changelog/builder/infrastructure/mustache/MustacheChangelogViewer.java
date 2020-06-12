@@ -41,7 +41,7 @@ public class MustacheChangelogViewer implements ChangelogViewer {
             mustache.execute(stringWriter, new LogsMustache(commitDayMustaches)).flush();
             return stringWriter.toString();
         } catch (Exception e) {
-            throw new ChangelogViewerException("Ошибка при подготовке шаблона", e);
+            throw new ChangelogViewerException("Error template build", e);
         }
     }
 }

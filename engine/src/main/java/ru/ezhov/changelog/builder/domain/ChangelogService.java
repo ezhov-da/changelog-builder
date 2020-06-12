@@ -19,9 +19,9 @@ public class ChangelogService {
             final String changelog = changelogViewer.create(template, logs);
             changelogStore.save(changelog);
         } catch (LogRepositoryException e) {
-            throw new ChangelogServiceException("Ошибка при получении логов", e);
+            throw new ChangelogServiceException("Error log retrieve", e);
         } catch (ChangelogViewerException e) {
-            throw new ChangelogServiceException("Ошибка в работе шаблонизатора", e);
+            throw new ChangelogServiceException("Error template", e);
         } catch (ChangelogStoreException e) {
             throw new ChangelogServiceException("Error on save file", e);
         }

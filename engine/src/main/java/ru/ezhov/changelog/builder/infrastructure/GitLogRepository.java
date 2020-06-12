@@ -28,12 +28,12 @@ public class GitLogRepository implements LogRepository {
                     if (log.isPresent()) {
                         logRows.add(log.get());
                     } else {
-                        LOG.warn("Не найдены данные в строке лога '{}' для построения лога согласно 'https://www.conventionalcommits.org/en/v1.0.0/'", logLine);
+                        LOG.warn("Not found convention commits in row '{}'. See 'https://www.conventionalcommits.org/en/v1.0.0/'", logLine);
                     }
                 }
             }
         } catch (Exception e) {
-            throw new LogRepositoryException("Ошибка получения логов", e);
+            throw new LogRepositoryException("Error log", e);
         }
 
         return logRows;

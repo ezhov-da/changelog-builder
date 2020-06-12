@@ -11,7 +11,7 @@ import java.util.Optional;
 class GitLogParserTest {
     @Test
     void test() {
-        final Optional<Log> optionalLogWithScope = new GitLogParser("bbc3c2b\tezhov_da\t2020-06-10T22:03:23+03:00\tfeat(git): реализован Git репозиторий").parse();
+        final Optional<Log> optionalLogWithScope = new GitLogParser("bbc3c2b\tezhov_da\t2020-06-10T22:03:23+03:00\tfeat(git): implemented Git repository").parse();
 
         assertTrue(optionalLogWithScope.isPresent());
 
@@ -19,15 +19,15 @@ class GitLogParserTest {
         assertEquals("feat", logWithScope.type().value());
         assertTrue(logWithScope.scope().value().isPresent());
         assertEquals("git", logWithScope.scope().value().get());
-        assertEquals("реализован Git репозиторий", logWithScope.description().value());
+        assertEquals("implemented Git repository", logWithScope.description().value());
 
-        final Optional<Log> optionalLogWithoutScope = new GitLogParser("ebcc752\tezhov_da\t2020-06-10T21:45:06+03:00\tfeat: создан проект").parse();
+        final Optional<Log> optionalLogWithoutScope = new GitLogParser("ebcc752\tezhov_da\t2020-06-10T21:45:06+03:00\tfeat: project initialized").parse();
 
         assertTrue(optionalLogWithoutScope.isPresent());
 
         final Log logWithoutScope = optionalLogWithoutScope.get();
         assertEquals("feat", logWithoutScope.type().value());
         assertFalse(logWithoutScope.scope().value().isPresent());
-        assertEquals("создан проект", logWithoutScope.description().value());
+        assertEquals("project initialized", logWithoutScope.description().value());
     }
 }

@@ -1,12 +1,13 @@
 # Changelog
 ## 2020-06-12
-- изменена архитектура проекта, реализован Maven плагин __feat__
+- edited CHANGELOG.md __docs__
+- changed architecture implemented Maven plugin __feat__
 ## 2020-06-11
-- в документацию добавлена ссылка на соглашение по формату коммитов __docs__
-- устранена опечатка __refactor__
-- реализовано использование Mustache шаблонизатора __feat__
-- реализован базовый функционал __feat__
+- added commit convention link __docs__
+- fixed typo __refactor__
+- added Mustache template __feat__
+- implemented basic functionality __feat__
 ## 2020-06-10
-- реализован Git репозиторий __feat(git)__
-- создан проект __feat__
-- создан проект __feat__
+- different changes __feat__
+- implemented Git repository __feat(git)__
+- project initialized __feat__
