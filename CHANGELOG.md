@@ -1,9 +1,8 @@
 # Changelog
 ## 2020-06-13
+- README.md edited *docs*
 - tabs deleted in the default template *fix*
-- CHANGELOG.md file edited *docs*
 - typo fixed *docs*
-- CHANGELOG.md file edited *docs*
 - added configuration supports to maven plugin *feat*
 ## 2020-06-12
 - updated CHANGELOG.md *docs*
