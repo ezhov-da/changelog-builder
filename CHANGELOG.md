@@ -1,4 +1,6 @@
 # Changelog
+## 2020-06-14
+- apache CLI added *feat*
 ## 2020-06-13
 - artifacts deploy added  to git packages *build*
 - README.md edited *docs*

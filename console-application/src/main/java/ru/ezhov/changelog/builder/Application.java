@@ -1,25 +1,41 @@
 package ru.ezhov.changelog.builder;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import ru.ezhov.changelog.builder.application.ChangelogApplicationService;
 import ru.ezhov.changelog.builder.application.ChangelogApplicationServiceException;
 import ru.ezhov.changelog.builder.domain.Template;
+import ru.ezhov.changelog.builder.domain.TemplateRepository;
+import ru.ezhov.changelog.builder.domain.TemplateRepositoryException;
 import ru.ezhov.changelog.builder.infrastructure.ChangelogRepositoryFactory;
 import ru.ezhov.changelog.builder.infrastructure.ChangelogViewerFactory;
 import ru.ezhov.changelog.builder.infrastructure.CommitRepositoryFactory;
 import ru.ezhov.changelog.builder.infrastructure.CommitRepositoryFactoryException;
 import ru.ezhov.changelog.builder.infrastructure.ConfigurationFactory;
+import ru.ezhov.changelog.builder.infrastructure.TemplateRepositoryFactory;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.util.Optional;
 
 public class Application {
     public static void main(String[] args) {
+        Options options = new Options();
+
+        Option input = new Option("t", "template", true, "file path to template or string template");
+        options.addOption(input);
+
+        CommandLineParser parser = new DefaultParser();
+        HelpFormatter formatter = new HelpFormatter();
+        CommandLine cmd;
+
         try {
-            final Optional<String> template = getTemplate(args);
-            if (template.isPresent()) {
+            cmd = parser.parse(options, args);
+            try {
+                final Template template = getTemplate(cmd.getOptionValue("t"));
                 ChangelogApplicationService changelogApplicationService = new ChangelogApplicationService(
                         CommitRepositoryFactory.getInstance(ConfigurationFactory.defaultConfiguration().vcs()),
                         ChangelogViewerFactory.mustache(),
@@ -29,40 +45,34 @@ public class Application {
                         )
                 );
                 changelogApplicationService.create(
-                        Template.create(template.get()),
+                        template,
                         ConfigurationFactory.defaultConfiguration().commitDateFormat(),
                         ConfigurationFactory.defaultConfiguration().commitDateTimeFormat()
                 );
+            } catch (ChangelogApplicationServiceException | CommitRepositoryFactoryException | TemplateRepositoryException e) {
+                System.out.println("Error");
+                e.printStackTrace();
+                System.exit(1);
             }
-        } catch (IOException | ChangelogApplicationServiceException | CommitRepositoryFactoryException e) {
-            System.out.println("Error");
-            e.printStackTrace();
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            formatter.printHelp("utility-name", options);
+            System.exit(1);
         }
     }
 
-    private static Optional<String> getTemplate(String[] args) throws IOException {
-        if (args.length > 0) {
-            for (int i = 0; i < args.length; i++) {
-                if (args[i].equals("-f")) {
-                    if ((i + 1) <= args.length) {
-                        String path = args[i + 1];
-
-                        final byte[] bytes = Files.readAllBytes(new File(path).toPath());
-                        return Optional.of(new String(bytes));
-                    }
-                } else if (args[i].equals("-t")) {
-                    if ((i + 1) <= args.length) {
-                        return Optional.of(args[i + 1]);
-                    }
-                }
-            }
+    private static Template getTemplate(String template) throws TemplateRepositoryException {
+        TemplateRepository templateRepository;
+        if (template == null || "".equals(template)) {
+            templateRepository = TemplateRepositoryFactory.defaultMustacheTemplateRepository();
         } else {
-            try (InputStream inputStream = Application.class.getResourceAsStream("/default-template.md.mustache")) {
-                byte[] bytes = new byte[inputStream.available()];
-                inputStream.read(bytes);
-                return Optional.of(new String(bytes));
+            File file = new File(template);
+            if (file.exists() && !file.isDirectory()) {
+                templateRepository = TemplateRepositoryFactory.file(file);
+            } else {
+                templateRepository = TemplateRepositoryFactory.string(template);
             }
         }
-        return Optional.empty();
+        return templateRepository.get();
     }
 }

@@ -24,7 +24,7 @@ import ru.ezhov.changelog.builder.infrastructure.TemplateRepositoryFactory;
 @Mojo(name = "generate")
 public class ChangelogBuilderMojo extends AbstractMojo {
     @Parameter(defaultValue = DefaultConfiguration.DEFAULT_VCS)
-    private Vcs vcs;
+    private String vcs;
 
     @Parameter(defaultValue = DefaultConfiguration.CHANGELOG_FILE_DIRECTORY)
     String changelogFileDirectory;
@@ -50,7 +50,7 @@ public class ChangelogBuilderMojo extends AbstractMojo {
                     TemplateRepositoryFactory.defaultMustacheTemplateRepository() : TemplateRepositoryFactory.string(template);
 
             final ChangelogApplicationService changelogApplicationService = new ChangelogApplicationService(
-                    CommitRepositoryFactory.getInstance(vcs),
+                    CommitRepositoryFactory.getInstance(Vcs.valueOf(vcs)),
                     ChangelogViewerFactory.mustache(),
                     ChangelogRepositoryFactory.fileChangelogRepository(
                             ChangelogFileDirectory.create(changelogFileDirectory),
