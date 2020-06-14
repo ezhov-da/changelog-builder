@@ -1,5 +1,6 @@
 # Changelog
 ## 2020-06-14
+- version edited to semantic version *docs*
 - license added *docs*
 - apache CLI added *feat*
 ## 2020-06-13
