@@ -22,16 +22,6 @@
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>ru.ezhov</groupId>
-                <artifactId>changelog-builder-engine</artifactId>
-                <version>0.0.1</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <distributionManagement>
         <repository>
             <id>github</id>

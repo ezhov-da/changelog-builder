@@ -1,4 +1,6 @@
 # Changelog
+## 2020-06-15
+- pom.xml corrected *build*
 ## 2020-06-14
 - version edited to semantic version *docs*
 - license added *docs*

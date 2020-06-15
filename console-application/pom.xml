@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>changelog-builder-console-application</artifactId>
+    <version>0.0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,6 +25,7 @@
         <dependency>
             <groupId>ru.ezhov</groupId>
             <artifactId>changelog-builder-engine</artifactId>
+            <version>0.0.1</version>
         </dependency>
 
         <dependency>
@@ -58,7 +60,7 @@
             <plugin>
                 <groupId>ru.ezhov</groupId>
                 <artifactId>changelog-builder-maven-plugin</artifactId>
-                <version>0.1</version>
+                <version>0.0.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -78,10 +80,10 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ru.ezhov.changelog.builder.Application</mainClass>
+                            <mainClass>ru.ezhov.changelog.builder.console.Application</mainClass>
                         </manifest>
                     </archive>
-                    <finalName>${project.artifactId}</finalName>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>

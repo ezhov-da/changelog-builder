@@ -5,21 +5,21 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import ru.ezhov.changelog.builder.application.ChangelogApplicationService;
-import ru.ezhov.changelog.builder.application.ChangelogApplicationServiceException;
-import ru.ezhov.changelog.builder.domain.ChangelogFileDirectory;
-import ru.ezhov.changelog.builder.domain.ChangelogFilename;
-import ru.ezhov.changelog.builder.domain.CommitDateFormat;
-import ru.ezhov.changelog.builder.domain.CommitDateTimeFormat;
-import ru.ezhov.changelog.builder.domain.TemplateRepository;
-import ru.ezhov.changelog.builder.domain.TemplateRepositoryException;
-import ru.ezhov.changelog.builder.domain.Vcs;
-import ru.ezhov.changelog.builder.infrastructure.ChangelogRepositoryFactory;
-import ru.ezhov.changelog.builder.infrastructure.ChangelogViewerFactory;
-import ru.ezhov.changelog.builder.infrastructure.CommitRepositoryFactory;
-import ru.ezhov.changelog.builder.infrastructure.CommitRepositoryFactoryException;
-import ru.ezhov.changelog.builder.infrastructure.DefaultConfiguration;
-import ru.ezhov.changelog.builder.infrastructure.TemplateRepositoryFactory;
+import ru.ezhov.changelog.builder.engine.application.ChangelogApplicationService;
+import ru.ezhov.changelog.builder.engine.application.ChangelogApplicationServiceException;
+import ru.ezhov.changelog.builder.engine.domain.ChangelogFileDirectory;
+import ru.ezhov.changelog.builder.engine.domain.ChangelogFilename;
+import ru.ezhov.changelog.builder.engine.domain.CommitDateFormat;
+import ru.ezhov.changelog.builder.engine.domain.CommitDateTimeFormat;
+import ru.ezhov.changelog.builder.engine.domain.TemplateRepository;
+import ru.ezhov.changelog.builder.engine.domain.TemplateRepositoryException;
+import ru.ezhov.changelog.builder.engine.domain.Vcs;
+import ru.ezhov.changelog.builder.engine.infrastructure.ChangelogRepositoryFactory;
+import ru.ezhov.changelog.builder.engine.infrastructure.ChangelogViewerFactory;
+import ru.ezhov.changelog.builder.engine.infrastructure.CommitRepositoryFactory;
+import ru.ezhov.changelog.builder.engine.infrastructure.CommitRepositoryFactoryException;
+import ru.ezhov.changelog.builder.engine.infrastructure.DefaultConfiguration;
+import ru.ezhov.changelog.builder.engine.infrastructure.TemplateRepositoryFactory;
 
 @Mojo(name = "generate")
 public class ChangelogBuilderMojo extends AbstractMojo {
