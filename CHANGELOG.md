@@ -1,5 +1,6 @@
 # Changelog
 ## 2020-06-15
+- pom.xml engine corrected *build*
 - pom.xml corrected *build*
 ## 2020-06-14
 - version edited to semantic version *docs*
