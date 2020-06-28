@@ -1,4 +1,6 @@
 # Changelog
+## 2020-06-28
+- travis-ci configuration added *build*
 ## 2020-06-15
 - pom.xml engine corrected *build*
 - pom.xml corrected *build*
