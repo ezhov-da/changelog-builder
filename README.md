@@ -1,7 +1,9 @@
 # changelog-builder
 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ezhov-da/changelog-builder)
 [![Build Status](https://travis-ci.org/ezhov-da/changelog-builder.svg?branch=master)](https://travis-ci.org/ezhov-da/changelog-builder)
 [![Test Coverage](https://img.shields.io/codecov/c/github/ezhov-da/changelog-builder.svg)](https://codecov.io/github/ezhov-da/changelog-builder?branch=master)
+![GitHub](https://img.shields.io/github/license/ezhov-da/changelog-builder)
 
 Convention commits [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/).
 
