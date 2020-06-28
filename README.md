@@ -1,5 +1,8 @@
 # changelog-builder
 
+[![Build Status](https://travis-ci.org/ezhov-da/changelog-builder.svg?branch=master)](https://travis-ci.org/ezhov-da/changelog-builder)
+[![Test Coverage](https://img.shields.io/codecov/c/github/ezhov-da/changelog-builder.svg)](https://codecov.io/github/ezhov-da/changelog-builder?branch=master)
+
 Convention commits [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/).
 
 Usage [Mustache](http://mustache.github.io/) as template. 

@@ -31,8 +31,8 @@ class MustacheChangelogViewerTest {
                                 "</ul>\n" +
                                 "{{/commitDays}}"
                 ),
-                CommitDateFormat.create("yyyy-mm-dd"),
-                CommitDateTimeFormat.create("yyyy-mm-dd"),
+                CommitDateFormat.create("yyyy-MM-dd"),
+                CommitDateTimeFormat.create("yyyy-MM-dd"),
                 Arrays.asList(
                         Commit.create(
                                 Type.create("feat"),

@@ -4,7 +4,6 @@ jdk:
   - openjdk8
 
 script:
-  - mvn test -B
   - mvn cobertura:cobertura -B
 
 after_success:

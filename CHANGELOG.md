@@ -1,5 +1,7 @@
 # Changelog
 ## 2020-06-28
+- travis-ci changed *build*
+- https://codecov.io/ added *build*
 - travis-ci configuration added *build*
 ## 2020-06-15
 - pom.xml engine corrected *build*
