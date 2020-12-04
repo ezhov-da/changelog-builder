@@ -1,5 +1,7 @@
 # Changelog
 ## 2020-06-28
+- labels added *docs*
+- build fixed *build*
 - travis-ci changed *build*
 - https://codecov.io/ added *build*
 - travis-ci configuration added *build*

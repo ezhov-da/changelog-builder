@@ -7,12 +7,12 @@
     <parent>
         <groupId>ru.ezhov</groupId>
         <artifactId>changelog-builder</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
     </parent>
 
     <artifactId>changelog-builder-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>ru.ezhov</groupId>
             <artifactId>changelog-builder-engine</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
 
         <dependency>

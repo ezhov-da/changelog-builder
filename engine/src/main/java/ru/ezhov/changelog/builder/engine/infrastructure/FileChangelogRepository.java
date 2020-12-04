@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 class FileChangelogRepository implements ChangelogRepository {
     private static final Logger LOG = LoggerFactory.getLogger(FileChangelogRepository.class);
@@ -25,8 +27,8 @@ class FileChangelogRepository implements ChangelogRepository {
     @Override
     public void save(String template) throws ChangelogRepositoryException {
         final File file = new File(changelogFileDirectory.value(), changelogFilename.value());
-        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            fileOutputStream.write(template.getBytes());
+        try (OutputStreamWriter fileOutputStream = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+            fileOutputStream.write(template);
 
             LOG.info("File saved to '{}'", file.getAbsolutePath());
         } catch (FileNotFoundException e) {
