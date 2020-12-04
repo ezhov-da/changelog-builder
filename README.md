@@ -1,5 +1,7 @@
 # changelog-builder
 
+## About
+
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ezhov-da/changelog-builder)
 [![Build Status](https://travis-ci.org/ezhov-da/changelog-builder.svg?branch=master)](https://travis-ci.org/ezhov-da/changelog-builder)
 [![Test Coverage](https://img.shields.io/codecov/c/github/ezhov-da/changelog-builder.svg)](https://codecov.io/github/ezhov-da/changelog-builder?branch=master)
@@ -7,7 +9,46 @@
 
 Convention commits [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/).
 
-Usage [Mustache](http://mustache.github.io/) as template. 
+Usage [Mustache](http://mustache.github.io/) as template engine. 
+
+## Add to project
+
+[https://jitpack.io/#ezhov-da/changelog-builder/v0.0.2](https://jitpack.io/#ezhov-da/changelog-builder/v0.0.2)
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```xml
+<dependency>
+    <groupId>com.github.ezhov-da</groupId>
+    <artifactId>changelog-builder</artifactId>
+    <version>Tag</version>
+</dependency>
+```
+
+## Run as console application
+
+You can run console application for create CHANGELOG.md file to your project.
+
+
+
+```
+JAVA_EXE=___REPLACE_TO_JAVA_HOME___/bin/java.exe; \
+VERSION=Tag; \
+wget --no-check-certificate \
+    -O "changelog-builder-console-application-${VERSION}.jar" \
+    https://github.com/ezhov-da/changelog-builder/releases/download/v${VERSION}/changelog-builder-console-application-${VERSION}-fat.jar && \
+    ${JAVA_EXE} -jar changelog-builder-console-application-${VERSION}.jar && \
+    rm -f "changelog-builder-console-application-${VERSION}.jar"
+```
+
+## Usage
 
 The template is supports with this context:
 
@@ -31,7 +72,7 @@ The template is supports with this context:
         <plugin>
             <groupId>ru.ezhov</groupId>
             <artifactId>changelog-builder-maven-plugin</artifactId>
-            <version>0.1</version>
+            <version>Tag</version>
             <executions>
                 <execution>
                     <phase>package</phase>
@@ -79,7 +120,7 @@ The template is supports with this context:
         <plugin>
             <groupId>ru.ezhov</groupId>
             <artifactId>changelog-builder-maven-plugin</artifactId>
-            <version>0.1</version>
+            <version>Tag</version>
             <configuration>
                 <vcs>GIT</vcs>
                 <changelogFileDirectory>.</changelogFileDirectory>
@@ -142,12 +183,4 @@ mvn ru.ezhov:changelog-builder-maven-plugin:0.1:generate -X
 ### Build project
 ```shell script
 mvn clean package install
-```
-
-### Deploy
-
-[Instruction](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages)
- 
-```shell script
-mvn deploy
 ```

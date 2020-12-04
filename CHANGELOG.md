@@ -1,4 +1,6 @@
 # Changelog
+## 2020-12-04
+- change file charset to UTF-8 *feat*
 ## 2020-06-28
 - labels added *docs*
 - build fixed *build*

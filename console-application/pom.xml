@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>changelog-builder-console-application</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -92,7 +92,7 @@
                             <mainClass>ru.ezhov.changelog.builder.console.Application</mainClass>
                         </manifest>
                     </archive>
-                    <finalName>${project.artifactId}-${project.version}</finalName>
+                    <finalName>${project.artifactId}-${project.version}-fat</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
