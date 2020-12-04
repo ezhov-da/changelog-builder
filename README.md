@@ -171,7 +171,7 @@ The template is supports with this context:
 - project initialized *feat*
 ```
 
-[See default configuration](src/main/java/ru/ezhov/changelog/builder/infrastructure/DefaultConfiguration.java)
+[See default configuration](src/main/java/ru/ezhov/changelog/builder/engine/infrastructure/DefaultConfiguration.java)
 
 ## Developers
 
