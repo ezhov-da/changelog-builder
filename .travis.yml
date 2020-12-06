@@ -8,8 +8,7 @@ before_install:
   - chmod +x gradlew
 
 script:
-  - mvn cobertura:cobertura -B
-  - ./gradlew build
+  - mvn cobertura:cobertura -B && ./gradlew build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
