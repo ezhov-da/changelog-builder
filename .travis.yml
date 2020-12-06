@@ -5,14 +5,13 @@ jdk:
 
 # https://stackoverflow.com/questions/33820638/travis-yml-gradlew-permission-denied
 before_install:
-  - cat ./install-dependencies.sh
   - chmod +x gradlew
+  - chmod +x mvnw
 
-#install:
-#
+install: skip
 
 script:
-  - mvn cobertura:cobertura -B
+  - ./mvnw cobertura:cobertura -B
   - ./gradlew build
 
 after_success:
