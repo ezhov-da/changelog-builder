@@ -32,6 +32,10 @@ val functionalTestSourceSet = sourceSets.create("functionalTest") {
 gradlePlugin.testSourceSets(functionalTestSourceSet)
 configurations.getByName("functionalTestImplementation").extendsFrom(configurations.getByName("testImplementation"))
 
+tasks.getByName("jar", Jar::class){
+    baseName = "changelog-builder-gradle-plugin"
+}
+
 // Add a task to run the functional tests
 val functionalTest by tasks.registering(Test::class) {
     testClassesDirs = functionalTestSourceSet.output.classesDirs

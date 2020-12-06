@@ -1,1 +1,0 @@
-rootProject.name = "changelog-builder-gradle-plugin"

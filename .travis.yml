@@ -5,7 +5,7 @@ jdk:
 
 script:
   - mvn cobertura:cobertura -B
-  - cd gradle-plugin && ./gradlew build
+  - ./gradlew build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
