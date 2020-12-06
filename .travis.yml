@@ -3,6 +3,10 @@ language: java
 jdk:
   - openjdk8
 
+# https://stackoverflow.com/questions/33820638/travis-yml-gradlew-permission-denied
+before_install:
+  - chmod +x gradlew
+
 script:
   - mvn cobertura:cobertura -B
   - ./gradlew build
