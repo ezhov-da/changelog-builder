@@ -1,13 +1,14 @@
 plugins {
     id("java-gradle-plugin")
 }
-description = "Changelog Builder Gradle Plugin"
+
 group = "ru.ezhov"
+description = "Changelog Builder Gradle Plugin"
 version = "0.0.2"
 
 repositories {
-    mavenLocal()
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -32,7 +33,7 @@ val functionalTestSourceSet = sourceSets.create("functionalTest") {
 gradlePlugin.testSourceSets(functionalTestSourceSet)
 configurations.getByName("functionalTestImplementation").extendsFrom(configurations.getByName("testImplementation"))
 
-tasks.getByName("jar", Jar::class){
+tasks.getByName("jar", Jar::class) {
     baseName = "changelog-builder-gradle-plugin"
 }
 
@@ -46,3 +47,33 @@ val check by tasks.getting(Task::class) {
     // Run the functional tests as part of `check`
     dependsOn(functionalTest)
 }
+
+// https://stackoverflow.com/questions/41794914/how-to-create-the-fat-jar-with-gradle-kotlin-script
+val fatJar = task("fatJar", type = Jar::class) {
+//    manifest {
+//        attributes["Implementation-Title"] = "Gradle Jar File Example"
+//        attributes["Implementation-Version"] = version
+//        attributes["Main-Class"] = "com.mkyong.DateUtils"
+//    }
+    from(
+            configurations
+                    .runtimeClasspath
+                    .get()
+                    .map(
+                            {
+                                if (it.isDirectory)
+                                    it
+                                else
+                                    zipTree(it)
+                                            .matching {
+                                                exclude {
+                                                    it.path.contains("META-INF")
+                                                }
+                                            }
+                            }
+                    )
+    )
+    with(tasks.jar.get() as CopySpec)
+}
+
+//tasks.getByName("build").dependsOn(tasks)
